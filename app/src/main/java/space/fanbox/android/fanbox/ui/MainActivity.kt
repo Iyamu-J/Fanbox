@@ -1,4 +1,4 @@
-package space.fanbox.android.fanbox
+package space.fanbox.android.fanbox.ui
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 
 import kotlinx.android.synthetic.main.activity_main.*
+import space.fanbox.android.fanbox.R
 
 class MainActivity : AppCompatActivity() {
 
