@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import space.fanbox.android.fanbox.R
 import space.fanbox.android.fanbox.di.BaseViewModel
 import space.fanbox.android.fanbox.rest.WebService
 import javax.inject.Inject
@@ -17,6 +18,10 @@ class LetterListViewModel: BaseViewModel() {
     private lateinit var subscription: Disposable
 
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
+    val errorMessage: MutableLiveData<Int> = MutableLiveData()
+    val errorOnClickListener = View.OnClickListener {
+        loadLetters()
+    }
 
     init {
         loadLetters()
@@ -41,6 +46,7 @@ class LetterListViewModel: BaseViewModel() {
 
     private fun onRetrieveLetterListStart() {
         loadingVisibility.value = View.VISIBLE
+        errorMessage.value = null
     }
 
     private fun onRetrieveLetterListFinish() {
@@ -49,5 +55,7 @@ class LetterListViewModel: BaseViewModel() {
 
     private fun onRetrieveLetterListSuccess() {}
 
-    private fun onRetrieveLetterListError() {}
+    private fun onRetrieveLetterListError() {
+        errorMessage.value = R.string.error_message
+    }
 }
