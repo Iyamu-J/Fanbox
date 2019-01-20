@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: LetterListViewModel
 
-    private var errorSnackbar: Snackbar? = null
+    private var errorSnackBar: Snackbar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,12 +61,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showError(@StringRes errorMessage: Int) {
-        errorSnackbar = Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_INDEFINITE)
-        errorSnackbar?.setAction(R.string.retry, viewModel.errorOnClickListener)
-        errorSnackbar?.show()
+        errorSnackBar = Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_INDEFINITE)
+        errorSnackBar?.setAction(R.string.retry, viewModel.errorOnClickListener)
+        errorSnackBar?.show()
     }
 
     private fun hideError() {
-        errorSnackbar?.dismiss()
+        errorSnackBar?.dismiss()
     }
 }
