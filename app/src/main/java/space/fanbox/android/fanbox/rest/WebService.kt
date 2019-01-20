@@ -6,6 +6,6 @@ import space.fanbox.android.fanbox.model.Letter
 
 interface WebService {
 
-    @GET("/letters/")
+    @GET("letters/")
     fun getLetters(): Observable<List<Letter>>
 }
