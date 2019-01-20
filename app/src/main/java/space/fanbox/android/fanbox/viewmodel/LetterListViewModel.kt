@@ -9,7 +9,7 @@ import space.fanbox.android.fanbox.di.BaseViewModel
 import space.fanbox.android.fanbox.rest.WebService
 import javax.inject.Inject
 
-class LetterViewModel: BaseViewModel() {
+class LetterListViewModel: BaseViewModel() {
 
     @Inject
     lateinit var webService: WebService
