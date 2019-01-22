@@ -3,6 +3,7 @@ package space.fanbox.android.fanbox.viewmodel
 import androidx.lifecycle.MutableLiveData
 import space.fanbox.android.fanbox.di.BaseViewModel
 import space.fanbox.android.fanbox.model.Letter
+import space.fanbox.android.fanbox.model.Tag
 
 class LetterViewModel : BaseViewModel() {
 
@@ -13,7 +14,8 @@ class LetterViewModel : BaseViewModel() {
     private val body = MutableLiveData<String>()
     private val love = MutableLiveData<String>()
     private val hate = MutableLiveData<String>()
-    private val categories = MutableLiveData<List<String>>()
+    private val categories = MutableLiveData<String>()
+    private val tags = MutableLiveData<List<Tag>>()
 
     fun bind(letter: Letter) {
         senderName.value = letter.sender_name
@@ -24,6 +26,7 @@ class LetterViewModel : BaseViewModel() {
         love.value = letter.love
         hate.value = letter.hate
         categories.value = letter.category
+        tags.value = letter.tags
     }
 
     fun getSenderName(): MutableLiveData<String> {
@@ -54,7 +57,11 @@ class LetterViewModel : BaseViewModel() {
         return hate
     }
 
-    fun getCategories(): MutableLiveData<List<String>> {
+    fun getCategories(): MutableLiveData<String> {
         return categories
+    }
+
+    fun getTags(): MutableLiveData<List<Tag>> {
+        return tags
     }
 }

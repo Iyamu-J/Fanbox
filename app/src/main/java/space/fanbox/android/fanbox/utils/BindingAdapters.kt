@@ -1,5 +1,7 @@
 package space.fanbox.android.fanbox.utils
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import space.fanbox.android.fanbox.model.Tag
 
 @BindingAdapter("mutableVisibility")
 fun setMutableVisibility(view: View, visibility: MutableLiveData<Int>?) {
@@ -38,16 +41,17 @@ fun setAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
 }
 
 @BindingAdapter("addChips")
-fun setChips(view: ChipGroup, categories: MutableLiveData<List<String>>?) {
+fun setChips(view: ChipGroup, tags: MutableLiveData<List<Tag>>?) {
 
     val parentActivity: AppCompatActivity? = view.getParentActivity()
-    if (parentActivity != null && categories != null) {
-        categories.observe(parentActivity, Observer {
+    if (parentActivity != null && tags != null) {
+        tags.observe(parentActivity, Observer {
             value ->
-            for (category in value) {
+            for (tag in value) {
                 val chip = Chip(parentActivity)
-                chip.text = category
-                chip.setChipBackgroundColorResource(android.R.color.transparent)
+                chip.text = tag.label
+                chip.chipBackgroundColor = ColorStateList.valueOf(Color.parseColor(tag.color))
+                chip.setTextColor(Color.parseColor(tag.text_color))
                 view.addView(chip)
             }
         })

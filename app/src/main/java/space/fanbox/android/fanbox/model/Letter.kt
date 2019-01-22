@@ -11,9 +11,10 @@ data class Letter(
     val sender_name: String,
     val sender_id: String,
     val stamp_id: String,
-    val category: List<String>,
+    val category: String,
     val love: String,
     val hate: String,
     val views: String,
-    val date_created: String
+    val date_created: String,
+    val tags: List<Tag>
 )

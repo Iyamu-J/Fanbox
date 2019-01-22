@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            app:addChips="@{viewModel.getCategories}">
+            app:addChips="@{viewModel.getTags}">
 
         </com.google.android.material.chip.ChipGroup>
 
