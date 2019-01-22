@@ -1,5 +1,6 @@
 package space.fanbox.android.fanbox.viewmodel
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -7,7 +8,9 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import space.fanbox.android.fanbox.R
 import space.fanbox.android.fanbox.di.BaseViewModel
+import space.fanbox.android.fanbox.model.Letter
 import space.fanbox.android.fanbox.rest.WebService
+import space.fanbox.android.fanbox.ui.LetterListAdapter
 import javax.inject.Inject
 
 class LetterListViewModel: BaseViewModel() {
@@ -22,6 +25,8 @@ class LetterListViewModel: BaseViewModel() {
     val errorOnClickListener = View.OnClickListener {
         loadLetters()
     }
+
+    val letterListAdapter: LetterListAdapter = LetterListAdapter()
 
     init {
         loadLetters()
@@ -39,8 +44,8 @@ class LetterListViewModel: BaseViewModel() {
             .doOnSubscribe { onRetrieveLetterListStart() }
             .doOnTerminate { onRetrieveLetterListFinish() }
             .subscribe(
-                { onRetrieveLetterListSuccess() },
-                { onRetrieveLetterListError() }
+                { result -> onRetrieveLetterListSuccess(result) },
+                { error -> onRetrieveLetterListError(error) }
             )
     }
 
@@ -53,9 +58,14 @@ class LetterListViewModel: BaseViewModel() {
         loadingVisibility.value = View.GONE
     }
 
-    private fun onRetrieveLetterListSuccess() {}
+    private fun onRetrieveLetterListSuccess(letterList: List<Letter>) {
+        letterListAdapter.setLetterList(letterList)
+        errorMessage.value = null
+        Log.i(LetterListViewModel::class.java.simpleName, letterList.toString())
+    }
 
-    private fun onRetrieveLetterListError() {
+    private fun onRetrieveLetterListError(error: Throwable) {
         errorMessage.value = R.string.error_message
+        Log.i(LetterListViewModel::class.java.simpleName, error.message)
     }
 }
