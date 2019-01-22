@@ -1,7 +1,7 @@
 package space.fanbox.android.fanbox.di
 
 import androidx.lifecycle.ViewModel
-import space.fanbox.android.fanbox.viewmodel.LetterViewModel
+import space.fanbox.android.fanbox.viewmodel.LetterListViewModel
 
 abstract class BaseViewModel: ViewModel() {
 
@@ -16,7 +16,7 @@ abstract class BaseViewModel: ViewModel() {
 
     private fun inject() {
         when (this) {
-            is LetterViewModel -> appComponent.inject(this)
+            is LetterListViewModel -> appComponent.inject(this)
         }
     }
 }
