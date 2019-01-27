@@ -12,7 +12,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
@@ -22,6 +22,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:textColor="@color/colorPrimaryText"
             app:mutableText="@{viewModel.getSenderName}"
             tools:text="@tools:sample/full_names" />
 
@@ -35,6 +36,7 @@
             android:drawableStart="@drawable/ic_date"
             android:drawablePadding="4dp"
             android:textAlignment="viewStart"
+            android:textColor="@color/colorPrimaryText"
             android:textSize="16sp"
             app:mutableText="@{viewModel.getDateCreated}"
             tools:text="@tools:sample/date/mmddyy" />
@@ -47,6 +49,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:textColor="@color/colorPrimaryText"
             app:mutableText="@{viewModel.getRecipient}"
             tools:text="@tools:sample/full_names" />
 
@@ -57,6 +60,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:textColor="@color/colorPrimaryText"
             android:textSize="18sp"
             android:textStyle="bold"
             app:mutableText="@{viewModel.getSubject}"
@@ -69,6 +73,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:textColor="@color/colorSecondaryText"
             app:mutableText="@{viewModel.getBody}"
             tools:text="@tools:sample/lorem" />
 
@@ -117,6 +122,13 @@
                 tools:text="30" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/colorDivider" />
 
     </LinearLayout>
 
