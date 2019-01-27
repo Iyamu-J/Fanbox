@@ -1,5 +1,6 @@
 package space.fanbox.android.fanbox.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -55,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_about -> true
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -63,6 +64,7 @@ class MainActivity : AppCompatActivity() {
     private fun showError(@StringRes errorMessage: Int) {
         errorSnackBar = Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_INDEFINITE)
         errorSnackBar?.setAction(R.string.retry, viewModel.errorOnClickListener)
+        errorSnackBar?.setActionTextColor(Color.WHITE)
         errorSnackBar?.show()
     }
 
