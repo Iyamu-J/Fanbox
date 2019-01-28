@@ -3,17 +3,19 @@ package space.fanbox.android.fanbox.viewmodel
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import space.fanbox.android.fanbox.R
+import space.fanbox.android.fanbox.database.LetterDao
 import space.fanbox.android.fanbox.di.BaseViewModel
 import space.fanbox.android.fanbox.model.Letter
 import space.fanbox.android.fanbox.rest.WebService
 import space.fanbox.android.fanbox.ui.LetterListAdapter
 import javax.inject.Inject
 
-class LetterListViewModel: BaseViewModel() {
+class LetterListViewModel(private val letterDao: LetterDao) : BaseViewModel() {
 
     @Inject
     lateinit var webService: WebService
@@ -38,7 +40,16 @@ class LetterListViewModel: BaseViewModel() {
     }
 
     private fun loadLetters() {
-        subscription = webService.getLetters()
+        subscription = Observable.fromCallable { letterDao.all }
+            .concatMap { dbLetterList ->
+                if (dbLetterList.isEmpty())
+                    webService.getLetters().concatMap { apiLetterList ->
+                        letterDao.insertAllLetters(*apiLetterList.toTypedArray())
+                        Observable.just(apiLetterList)
+                    }
+                else
+                    Observable.just(dbLetterList)
+            }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { onRetrieveLetterListStart() }
