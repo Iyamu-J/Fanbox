@@ -1,6 +1,11 @@
 package space.fanbox.android.fanbox.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
 data class Letter(
+    @field:PrimaryKey
     val id: String,
     val subject: String,
     val body: String,
