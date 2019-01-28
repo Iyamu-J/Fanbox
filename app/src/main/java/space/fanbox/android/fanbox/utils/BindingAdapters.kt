@@ -1,5 +1,6 @@
 package space.fanbox.android.fanbox.utils
 
+import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.view.View
@@ -12,9 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import space.fanbox.android.fanbox.model.Tag
-import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.util.*
 
 @BindingAdapter("mutableVisibility")
 fun setMutableVisibility(view: View, visibility: MutableLiveData<Int>?) {
@@ -48,8 +47,7 @@ fun setChips(view: ChipGroup, tags: MutableLiveData<List<Tag>>?) {
 
     val parentActivity: AppCompatActivity? = view.getParentActivity()
     if (parentActivity != null && tags != null) {
-        tags.observe(parentActivity, Observer {
-            value ->
+        tags.observe(parentActivity, Observer { value ->
             // this is called to prevent multiple similar chips
             view.removeAllViews()
 
@@ -60,6 +58,21 @@ fun setChips(view: ChipGroup, tags: MutableLiveData<List<Tag>>?) {
                 chip.setTextColor(Color.parseColor("#${tag.text_color}"))
                 view.addView(chip)
             }
+        })
+    }
+}
+
+@SuppressLint("SimpleDateFormat")
+@BindingAdapter("formatDate")
+fun setFormattedDate(view: TextView, date: MutableLiveData<String>?) {
+
+    val parentActivity: AppCompatActivity? = view.getParentActivity()
+    if (parentActivity != null && date != null) {
+        date.observe(parentActivity, Observer { value ->
+            val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
+            val dateCreated = simpleDateFormat.parse(value)
+            val dateFormat = SimpleDateFormat.getDateInstance()
+            view.text = dateFormat.format(dateCreated) ?: ""
         })
     }
 }

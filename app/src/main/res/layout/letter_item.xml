@@ -38,7 +38,7 @@
             android:textAlignment="viewStart"
             android:textColor="@color/colorPrimaryText"
             android:textSize="16sp"
-            app:mutableText="@{viewModel.getDateCreated}"
+            app:formatDate="@{viewModel.getDateCreated}"
             tools:text="@tools:sample/date/mmddyy" />
 
 
