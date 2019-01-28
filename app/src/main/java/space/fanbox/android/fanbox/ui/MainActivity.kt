@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import space.fanbox.android.fanbox.R
 import space.fanbox.android.fanbox.databinding.ActivityMainBinding
 import space.fanbox.android.fanbox.viewmodel.LetterListViewModel
+import space.fanbox.android.fanbox.viewmodel.LetterViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,7 +35,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.letterList.layoutManager = LinearLayoutManager(this)
 
-        viewModel = ViewModelProviders.of(this).get(LetterListViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, LetterViewModelFactory(this))
+            .get(LetterListViewModel::class.java)
+
         viewModel.errorMessage.observe(this, Observer { errorMessage ->
             if (errorMessage != null) showError(errorMessage) else hideError()
         })
