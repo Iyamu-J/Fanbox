@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import space.fanbox.android.fanbox.model.Letter
 
-@Database(entities = [Letter::class], version = 1)
+@Database(entities = [Letter::class], version = 1, exportSchema = false)
 @TypeConverters(TagTypeConverters::class)
 abstract class AppDatabase : RoomDatabase() {
 
