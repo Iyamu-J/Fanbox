@@ -61,7 +61,7 @@ class LetterListViewModel: BaseViewModel() {
     private fun onRetrieveLetterListSuccess(letterList: List<Letter>) {
         letterListAdapter.setLetterList(letterList)
         errorMessage.value = null
-        Log.i(LetterListViewModel::class.java.simpleName, letterList.toString())
+//        Log.i(LetterListViewModel::class.java.simpleName, letterList.toString())
     }
 
     private fun onRetrieveLetterListError(error: Throwable) {

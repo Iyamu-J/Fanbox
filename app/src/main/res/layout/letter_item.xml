@@ -73,9 +73,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="3"
             android:textColor="@color/colorSecondaryText"
             app:mutableText="@{viewModel.getBody}"
-            tools:text="@tools:sample/lorem" />
+            tools:text="@tools:sample/lorem"/>
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chip_group"
@@ -83,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            app:addChips="@{viewModel.getTags}">
+            app:chips="@{viewModel.getTags}">
 
         </com.google.android.material.chip.ChipGroup>
 
@@ -101,6 +103,7 @@
                 android:layout_marginEnd="8dp"
                 android:drawableStart="@drawable/ic_sentiment_satisfied"
                 android:drawablePadding="4dp"
+                android:textColor="@color/colorSecondaryText"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toStartOf="@id/hate"
                 app:layout_constraintTop_toTopOf="parent"
@@ -111,10 +114,9 @@
                 android:id="@+id/hate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="0dp"
                 android:drawableStart="@drawable/ic_sentiment_dissatisfied"
                 android:drawablePadding="4dp"
+                android:textColor="@color/colorSecondaryText"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

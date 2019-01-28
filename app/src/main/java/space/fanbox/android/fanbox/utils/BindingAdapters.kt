@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import space.fanbox.android.fanbox.model.Tag
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 @BindingAdapter("mutableVisibility")
 fun setMutableVisibility(view: View, visibility: MutableLiveData<Int>?) {
@@ -40,18 +43,21 @@ fun setAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
     view.adapter = adapter
 }
 
-@BindingAdapter("addChips")
+@BindingAdapter("chips")
 fun setChips(view: ChipGroup, tags: MutableLiveData<List<Tag>>?) {
 
     val parentActivity: AppCompatActivity? = view.getParentActivity()
     if (parentActivity != null && tags != null) {
         tags.observe(parentActivity, Observer {
             value ->
+            // this is called to prevent multiple similar chips
+            view.removeAllViews()
+
             for (tag in value) {
                 val chip = Chip(parentActivity)
                 chip.text = tag.label
-                chip.chipBackgroundColor = ColorStateList.valueOf(Color.parseColor(tag.color))
-                chip.setTextColor(Color.parseColor(tag.text_color))
+                chip.chipBackgroundColor = ColorStateList.valueOf(Color.parseColor("#${tag.color}"))
+                chip.setTextColor(Color.parseColor("#${tag.text_color}"))
                 view.addView(chip)
             }
         })
