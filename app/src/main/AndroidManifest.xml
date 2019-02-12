@@ -24,8 +24,8 @@
         </activity>
         <activity
             android:name=".ui.AboutActivity"
-            android:parentActivityName=".ui.MainActivity"
-            android:label="@string/about_activity_label" />
+            android:label="@string/about_activity_label"
+            android:parentActivityName=".ui.MainActivity" />
     </application>
 
 </manifest>
