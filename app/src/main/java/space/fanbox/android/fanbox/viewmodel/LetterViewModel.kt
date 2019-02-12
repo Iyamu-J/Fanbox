@@ -14,7 +14,8 @@ class LetterViewModel : BaseViewModel() {
     private val body = MutableLiveData<String>()
     private val love = MutableLiveData<String>()
     private val hate = MutableLiveData<String>()
-    private val categories = MutableLiveData<String>()
+    private val views = MutableLiveData<String>()
+    private val category = MutableLiveData<String>()
     private val tags = MutableLiveData<List<Tag>>()
 
     fun bind(letter: Letter) {
@@ -25,7 +26,8 @@ class LetterViewModel : BaseViewModel() {
         body.value = letter.body
         love.value = letter.love
         hate.value = letter.hate
-        categories.value = letter.category
+        views.value = letter.views
+        category.value = letter.category
         tags.value = letter.tags
     }
 
@@ -57,8 +59,12 @@ class LetterViewModel : BaseViewModel() {
         return hate
     }
 
-    fun getCategories(): MutableLiveData<String> {
-        return categories
+    fun getViews(): MutableLiveData<String> {
+        return views
+    }
+
+    fun getCategory(): MutableLiveData<String> {
+        return category
     }
 
     fun getTags(): MutableLiveData<List<Tag>> {

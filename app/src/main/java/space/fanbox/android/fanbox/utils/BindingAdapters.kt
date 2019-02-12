@@ -42,8 +42,8 @@ fun setAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
     view.adapter = adapter
 }
 
-@BindingAdapter("chips")
-fun setChips(view: ChipGroup, tags: MutableLiveData<List<Tag>>?) {
+@BindingAdapter("chipTag")
+fun setTagChips(view: ChipGroup, tags: MutableLiveData<List<Tag>>?) {
 
     val parentActivity: AppCompatActivity? = view.getParentActivity()
     if (parentActivity != null && tags != null) {
@@ -58,6 +58,22 @@ fun setChips(view: ChipGroup, tags: MutableLiveData<List<Tag>>?) {
                 chip.setTextColor(Color.parseColor("#${tag.text_color}"))
                 view.addView(chip)
             }
+        })
+    }
+}
+
+@BindingAdapter("chipCategory")
+fun setCategoryChip(view: ChipGroup, category: MutableLiveData<String>?) {
+
+    val parentActivity: AppCompatActivity? = view.getParentActivity()
+    if (parentActivity != null && category != null) {
+        category.observe(parentActivity, Observer { value ->
+            // this is called to prevent multiple similar chips
+            view.removeAllViews()
+
+            val chip = Chip(parentActivity)
+            chip.text = value ?: ""
+            view.addView(chip)
         })
     }
 }
