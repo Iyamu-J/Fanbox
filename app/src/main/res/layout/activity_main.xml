@@ -24,7 +24,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_scrollFlags="scroll|enterAlways|snap"/>
+                app:layout_scrollFlags="scroll|enterAlways|snap" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -34,6 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:indeterminateOnly="true"
+            android:maxHeight="3dp"
             app:layout_anchor="@id/app_bar_layout"
             app:layout_anchorGravity="bottom"
             app:mutableVisibility="@{viewModel.getLoadingVisibility()}" />
@@ -47,7 +48,7 @@
             android:scrollbarStyle="outsideOverlay"
             app:adapter="@{viewModel.getLetterListAdapter()}"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:listitem="@layout/letter_item"/>
+            tools:listitem="@layout/letter_item" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"

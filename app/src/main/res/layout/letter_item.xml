@@ -77,17 +77,34 @@
             android:maxLines="3"
             android:textColor="@color/colorSecondaryText"
             app:mutableText="@{viewModel.getBody}"
-            tools:text="@tools:sample/lorem"/>
+            tools:text="@tools:sample/lorem" />
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chip_group"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            app:chips="@{viewModel.getTags}">
+            android:orientation="horizontal">
 
-        </com.google.android.material.chip.ChipGroup>
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/category_chip_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:chipCategory="@{viewModel.getCategory}">
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/tags_chip_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                app:chipTag="@{viewModel.getTags}">
+
+            </com.google.android.material.chip.ChipGroup>
+
+        </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -114,13 +131,27 @@
                 android:id="@+id/hate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:drawableStart="@drawable/ic_sentiment_dissatisfied"
+                android:drawablePadding="4dp"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@id/views"
+                app:layout_constraintTop_toTopOf="parent"
+                app:mutableText="@{viewModel.getHate}"
+                tools:text="30" />
+
+            <TextView
+                android:id="@+id/views"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_views"
                 android:drawablePadding="4dp"
                 android:textColor="@color/colorSecondaryText"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:mutableText="@{viewModel.getHate}"
+                app:mutableText="@{viewModel.getViews}"
                 tools:text="30" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
