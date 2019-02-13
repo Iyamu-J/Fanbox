@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import io.reactivex.Flowable
 import space.fanbox.android.fanbox.model.Letter
 
 @Dao
@@ -14,4 +15,7 @@ interface LetterDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllLetters(vararg letters: Letter)
+
+    @Query("SELECT * FROM letter WHERE id = :id")
+    fun loadLetterById(id: String) : Flowable<Letter>
 }
