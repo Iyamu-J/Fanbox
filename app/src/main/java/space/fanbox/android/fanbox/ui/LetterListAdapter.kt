@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import space.fanbox.android.fanbox.R
 import space.fanbox.android.fanbox.databinding.LetterItemBinding
 import space.fanbox.android.fanbox.model.Letter
+import space.fanbox.android.fanbox.utils.Presenter
 import space.fanbox.android.fanbox.viewmodel.LetterViewModel
 
 class LetterListAdapter : RecyclerView.Adapter<LetterListAdapter.ViewHolder>() {
@@ -35,10 +36,13 @@ class LetterListAdapter : RecyclerView.Adapter<LetterListAdapter.ViewHolder>() {
     class ViewHolder(private val binding: LetterItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         private val viewModel = LetterViewModel()
+        private val presenter = Presenter(binding.root.context)
 
         fun bind(letter: Letter) {
             viewModel.bind(letter)
+            viewModel.id = letter.id
             binding.viewModel = viewModel
+            binding.presenter = presenter
         }
     }
 }

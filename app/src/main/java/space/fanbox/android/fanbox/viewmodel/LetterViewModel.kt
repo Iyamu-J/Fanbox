@@ -18,6 +18,8 @@ class LetterViewModel : BaseViewModel() {
     private val category = MutableLiveData<String>()
     private val tags = MutableLiveData<List<Tag>>()
 
+    var id: String? = ""
+
     fun bind(letter: Letter) {
         senderName.value = letter.sender_name
         dateCreated.value = letter.date_created
