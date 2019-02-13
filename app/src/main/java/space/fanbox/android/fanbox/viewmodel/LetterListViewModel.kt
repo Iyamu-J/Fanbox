@@ -75,7 +75,6 @@ class LetterListViewModel(private val letterDao: LetterDao) : BaseViewModel() {
                 { result -> onRetrieveLetterListSuccess(result) },
                 { error ->
                     onRetrieveLetterListError(error)
-                    refreshInterval.reset("letters")
                 }
             )
     }
@@ -85,9 +84,13 @@ class LetterListViewModel(private val letterDao: LetterDao) : BaseViewModel() {
         compositeDisposable.add(
             webService.getLetters()
                 .subscribeOn(Schedulers.io())
-                .subscribe { result -> updateLocalSource(result) }
+                .subscribe(
+                    { result -> updateLocalSource(result) },
+                    { refreshInterval.reset("letters") }
+                )
         )
-        Log.i(LetterListViewModel::class.java.simpleName, "New Updates")
+
+        Log.i(LetterListViewModel::class.java.simpleName, "Chacking for updates...")
     }
 
     private fun onRetrieveLetterListStart() {
