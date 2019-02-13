@@ -1,4 +1,4 @@
-package space.fanbox.android.fanbox.utils
+package space.fanbox.android.fanbox.listenerbindings
 
 import android.content.Context
 import android.content.Intent
