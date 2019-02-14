@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="letter"
+            type="space.fanbox.android.fanbox.model.Letter" />
+
+        <variable
+            name="presenter"
+            type="space.fanbox.android.fanbox.listenerbindings.DetailsPresenter" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".ui.DetailsActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/details_date_created"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:drawableStart="@drawable/ic_date"
+                android:drawablePadding="4dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="16sp"
+                app:formatDetailsDate="@{letter.date_created}"
+                tools:text="@tools:sample/date/mmddyy" />
+
+            <TextView
+                android:id="@+id/details_recipient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@{@string/format_recipient(letter.recipient)}"
+                android:textColor="@color/colorPrimaryText"
+                tools:text="@tools:sample/full_names" />
+
+            <TextView
+                android:id="@+id/details_subject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@{letter.subject}"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="@tools:sample/lorem" />
+
+            <TextView
+                android:id="@+id/details_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@{letter.body}"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="16sp"
+                android:textStyle="italic"
+                tools:text="@tools:sample/lorem" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                app:elevation="4dp"
+                app:showCard="@{letter.attachment}">
+
+                <ImageView
+                    android:id="@+id/details_attachment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/details_attachment_content_description"
+                    android:scaleType="centerCrop"
+                    app:imageUrl="@{letter.attachment}"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic[15]" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/details_closing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@{letter.closing}"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorSecondaryText"
+                tools:text="Yours Sincerely," />
+
+            <TextView
+                android:id="@+id/details_sender_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@{letter.sender_name}"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorPrimaryText"
+                android:textStyle="bold"
+                tools:text="@tools:sample/full_names" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/details_category_chip_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:chipDetailsCategory="@{letter.category}">
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/details_tags_chip_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    app:chipDetailsTags="@{letter.tags}">
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp">
+
+                <ImageButton
+                    android:id="@+id/details_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/details_share_content_description"
+                    android:onClick="@{(view) -> presenter.onShareClick(letter)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_share" />
+
+                <TextView
+                    android:id="@+id/details_love"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:drawableStart="@drawable/ic_sentiment_satisfied"
+                    android:drawablePadding="4dp"
+                    android:text="@{letter.love}"
+                    android:textColor="@color/colorSecondaryText"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toStartOf="@id/details_hate"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="30" />
+
+                <TextView
+                    android:id="@+id/details_hate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:drawableStart="@drawable/ic_sentiment_dissatisfied"
+                    android:drawablePadding="4dp"
+                    android:text="@{letter.hate}"
+                    android:textColor="@color/colorSecondaryText"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toStartOf="@id/details_views"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="30" />
+
+                <TextView
+                    android:id="@+id/details_views"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_views"
+                    android:drawablePadding="4dp"
+                    android:text="@{letter.views}"
+                    android:textColor="@color/colorSecondaryText"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="30" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>
