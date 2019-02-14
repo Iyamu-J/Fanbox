@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import space.fanbox.android.fanbox.R
 import space.fanbox.android.fanbox.databinding.LetterItemBinding
 import space.fanbox.android.fanbox.model.Letter
-import space.fanbox.android.fanbox.utils.Presenter
+import space.fanbox.android.fanbox.listenerbindings.Presenter
 import space.fanbox.android.fanbox.viewmodel.LetterViewModel
 
 class LetterListAdapter : RecyclerView.Adapter<LetterListAdapter.ViewHolder>() {
