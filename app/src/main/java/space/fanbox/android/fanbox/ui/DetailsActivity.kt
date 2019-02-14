@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import space.fanbox.android.fanbox.R
 import space.fanbox.android.fanbox.database.LettersDatabase
 import space.fanbox.android.fanbox.databinding.ActivityDetailsBinding
+import space.fanbox.android.fanbox.listenerbindings.DetailsPresenter
 import space.fanbox.android.fanbox.viewmodel.LetterDetailsViewModel
 import space.fanbox.android.fanbox.viewmodel.LetterDetailsViewModelFactory
 
@@ -24,16 +26,20 @@ class DetailsActivity : AppCompatActivity() {
             letterId = intent.getStringExtra(getString(R.string.extra_letter_id))
 
             binding = DataBindingUtil.setContentView(this, R.layout.activity_details)
-            setSupportActionBar(binding.toolbar)
 
             db = LettersDatabase.getInstance(this)
 
             val viewModel = ViewModelProviders.of(this, LetterDetailsViewModelFactory(db, letterId))
                 .get(LetterDetailsViewModel::class.java)
 
-            binding.letter = viewModel.getLetter()
+            viewModel.getLetter().observe(this, Observer { letter ->
+                run {
+                    binding.letter = letter
+                    title = letter.subject
+                }
+            })
 
-            title = viewModel.getLetter().subject
+            binding.presenter = DetailsPresenter(context = this)
         }
 
     }
