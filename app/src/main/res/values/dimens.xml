@@ -1,3 +1,21 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="drawable_padding">4dp</dimen>
+    <dimen name="layout_margin_16">16dp</dimen>
+    <dimen name="layout_margin_8">8dp</dimen>
+    <dimen name="layout_margin_4">4dp</dimen>
+    <dimen name="divider_layout_height">1dp</dimen>
+    <dimen name="divider_layout_margin_top">2dp</dimen>
+    <dimen name="tags_chip_group_layout_margin_start">4dp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="date_created_text_size">16sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="layout_margin_24">24dp</dimen>
+    <dimen name="layout_margin_32">32dp</dimen>
+    <dimen name="card_elevation">2dp</dimen>
+    <dimen name="card_view_corner_radius">4dp</dimen>
+    <dimen name="card_height">200dp</dimen>
+    <dimen name="recycler_padding_bottom">72dp</dimen>
+    <dimen name="progress_bar_max_height">4dp</dimen>
 </resources>

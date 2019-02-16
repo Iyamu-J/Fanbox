@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:indeterminateOnly="true"
-            android:maxHeight="3dp"
+            android:maxHeight="@dimen/progress_bar_max_height"
             app:layout_anchor="@id/app_bar_layout"
             app:layout_anchorGravity="bottom"
             app:mutableVisibility="@{viewModel.getLoadingVisibility()}" />
@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:paddingBottom="72dp"
+            android:paddingBottom="@dimen/recycler_padding_bottom"
             android:scrollbarStyle="outsideOverlay"
             app:adapter="@{viewModel.getLetterListAdapter()}"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"

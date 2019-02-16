@@ -7,10 +7,10 @@
                     </p></string>
     <string name="about_fan_box_heading">About FanBox</string>
     <string name="about_activity_label">About</string>
-    <string name="about_footer">&#169; 2018, FanBox.Space</string>
+    <string name="about_footer" translatable="false">&#169; 2018, FanBox.Space</string>
     <string name="learn_more"><a href="https://fanbox.space/about-us">Learn More</a></string>
     <string name="details_attachment_content_description">Attachment</string>
     <string name="details_share_content_description">Share</string>
-    <string name="extra_letter_id">EXTRA_LETTER_ID</string>
+    <string name="extra_letter_id" translatable="false">EXTRA_LETTER_ID</string>
     <string name="format_recipient">Dear %s,</string>
 </resources>

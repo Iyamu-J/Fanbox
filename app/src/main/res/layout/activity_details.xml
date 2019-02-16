@@ -29,64 +29,51 @@
 
             <TextView
                 android:id="@+id/details_date_created"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                style="@style/textStyle"
                 android:drawableStart="@drawable/ic_date"
-                android:drawablePadding="4dp"
+                android:drawablePadding="@dimen/drawable_padding"
                 android:textAlignment="viewStart"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="16sp"
+                android:textSize="@dimen/date_created_text_size"
                 app:formatDetailsDate="@{letter.date_created}"
                 tools:text="@tools:sample/date/mmddyy" />
 
             <TextView
                 android:id="@+id/details_recipient"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                style="@style/textStyle"
                 android:text="@{@string/format_recipient(letter.recipient)}"
                 android:textColor="@color/colorPrimaryText"
                 tools:text="@tools:sample/full_names" />
 
             <TextView
                 android:id="@+id/details_subject"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                style="@style/textStyle"
                 android:text="@{letter.subject}"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="20sp"
+                android:textSize="@dimen/text_size_20"
                 android:textStyle="bold"
                 tools:text="@tools:sample/lorem" />
 
             <TextView
                 android:id="@+id/details_body"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                style="@style/textStyle"
                 android:text="@{letter.body}"
                 android:textColor="@color/colorSecondaryText"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size_16"
                 android:textStyle="italic"
                 tools:text="@tools:sample/lorem" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                app:elevation="4dp"
+                android:layout_height="@dimen/card_height"
+                android:layout_marginStart="@dimen/layout_margin_16"
+                android:layout_marginTop="@dimen/layout_margin_8"
+                android:layout_marginEnd="@dimen/layout_margin_16"
+                app:cardCornerRadius="@dimen/card_view_corner_radius"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="true"
+                app:elevation="@dimen/card_elevation"
                 app:showCard="@{letter.attachment}">
 
                 <ImageView
@@ -101,11 +88,7 @@
 
             <TextView
                 android:id="@+id/details_closing"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                style="@style/textStyle"
                 android:text="@{letter.closing}"
                 android:textAlignment="viewEnd"
                 android:textColor="@color/colorSecondaryText"
@@ -113,11 +96,7 @@
 
             <TextView
                 android:id="@+id/details_sender_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                style="@style/textStyle"
                 android:text="@{letter.sender_name}"
                 android:textAlignment="viewEnd"
                 android:textColor="@color/colorPrimaryText"
@@ -127,9 +106,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/layout_margin_16"
+                android:layout_marginTop="@dimen/layout_margin_16"
+                android:layout_marginEnd="@dimen/layout_margin_16"
                 android:orientation="horizontal">
 
                 <com.google.android.material.chip.ChipGroup
@@ -144,7 +123,7 @@
                     android:id="@+id/details_tags_chip_group"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_marginStart="@dimen/tags_chip_group_layout_margin_start"
                     app:chipDetailsTags="@{letter.tags}">
 
                 </com.google.android.material.chip.ChipGroup>
@@ -154,10 +133,10 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginStart="@dimen/layout_margin_16"
+                android:layout_marginTop="@dimen/layout_margin_16"
+                android:layout_marginEnd="@dimen/layout_margin_16"
+                android:layout_marginBottom="@dimen/layout_margin_16">
 
                 <ImageButton
                     android:id="@+id/details_share"
@@ -172,41 +151,31 @@
 
                 <TextView
                     android:id="@+id/details_love"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
+                    style="@style/constraintTextStyle"
                     android:drawableStart="@drawable/ic_sentiment_satisfied"
-                    android:drawablePadding="4dp"
                     android:text="@{letter.love}"
                     android:textColor="@color/colorSecondaryText"
-                    android:textSize="20sp"
                     app:layout_constraintEnd_toStartOf="@id/details_hate"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="30" />
 
                 <TextView
                     android:id="@+id/details_hate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
+                    style="@style/constraintTextStyle"
                     android:drawableStart="@drawable/ic_sentiment_dissatisfied"
-                    android:drawablePadding="4dp"
                     android:text="@{letter.hate}"
                     android:textColor="@color/colorSecondaryText"
-                    android:textSize="20sp"
                     app:layout_constraintEnd_toStartOf="@id/details_views"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="30" />
 
                 <TextView
                     android:id="@+id/details_views"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/constraintTextStyle"
+                    android:layout_marginEnd="0dp"
                     android:drawableStart="@drawable/ic_views"
-                    android:drawablePadding="4dp"
                     android:text="@{letter.views}"
                     android:textColor="@color/colorSecondaryText"
-                    android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="30" />
