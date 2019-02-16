@@ -11,6 +11,7 @@ import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import space.fanbox.android.fanbox.BuildConfig
 import space.fanbox.android.fanbox.R
 import space.fanbox.android.fanbox.glide.GlideApp
 import space.fanbox.android.fanbox.model.Tag
@@ -38,7 +39,7 @@ fun loadImage(view: ImageView, attachment: String?) {
     if (attachment != null) {
         val isPhoto: Boolean = attachment.isNotEmpty()
         if (isPhoto) {
-            val url = "https://fanbox.space/images/letters/$attachment"
+            val url = BuildConfig.PHOTO_URL + attachment
             view.visibility = VISIBLE
             GlideApp.with(view.context)
                 .load(url)
