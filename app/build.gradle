@@ -25,6 +25,7 @@ android {
     }
     buildTypes.each {
         it.buildConfigField 'String', 'BASE_URL', BASE_URL
+        it.buildConfigField 'String', 'PHOTO_URL', PHOTO_URL
     }
     dataBinding {
         enabled = true
