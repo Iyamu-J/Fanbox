@@ -8,81 +8,62 @@
         <variable
             name="viewModel"
             type="space.fanbox.android.fanbox.viewmodel.LetterViewModel" />
+
         <variable
             name="presenter"
-            type="space.fanbox.android.fanbox.utils.Presenter" />
+            type="space.fanbox.android.fanbox.listenerbindings.Presenter" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:onClick="@{(view) -> presenter.onLetterClick(viewModel.id)}"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/sender_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
+            style="@style/textStyle"
             android:textColor="@color/colorPrimaryText"
             app:mutableText="@{viewModel.getSenderName}"
             tools:text="@tools:sample/full_names" />
 
         <TextView
             android:id="@+id/date_created"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
+            style="@style/textStyle"
             android:drawableStart="@drawable/ic_date"
-            android:drawablePadding="4dp"
+            android:drawablePadding="@dimen/drawable_padding"
             android:textAlignment="viewStart"
             android:textColor="@color/colorPrimaryText"
-            android:textSize="16sp"
+            android:textSize="@dimen/date_created_text_size"
             app:formatDate="@{viewModel.getDateCreated}"
             tools:text="@tools:sample/date/mmddyy" />
 
 
         <TextView
             android:id="@+id/recipient"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
+            style="@style/textStyle"
             android:textColor="@color/colorPrimaryText"
             app:mutableText="@{viewModel.getRecipient}"
             tools:text="@tools:sample/full_names" />
 
         <TextView
             android:id="@+id/subject"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
+            style="@style/textStyle"
             android:textColor="@color/colorPrimaryText"
-            android:textSize="18sp"
+            android:textSize="@dimen/subject_text_size"
             android:textStyle="bold"
             app:mutableText="@{viewModel.getSubject}"
             tools:text="@tools:sample/lorem" />
 
         <TextView
             android:id="@+id/body"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
+            style="@style/textStyle"
             android:ellipsize="end"
             android:maxLines="3"
             android:textColor="@color/colorSecondaryText"
             app:mutableText="@{viewModel.getBody}"
-            tools:text="@tools:sample/lorem"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:onClick="@{(view) -> presenter.onLetterClick(viewModel.id)}"/>
+            tools:text="@tools:sample/lorem" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -91,20 +72,15 @@
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/category_chip_group"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                style="@style/chipGroupStyle"
                 app:chipCategory="@{viewModel.getCategory}">
 
             </com.google.android.material.chip.ChipGroup>
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/tags_chip_group"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="16dp"
+                style="@style/chipGroupStyle"
+                android:layout_marginStart="@dimen/tags_chip_group_layout_margin_start"
                 app:chipTag="@{viewModel.getTags}">
 
             </com.google.android.material.chip.ChipGroup>
@@ -114,19 +90,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp">
+            android:layout_marginStart="@dimen/gen_layout_margin"
+            android:layout_marginTop="@dimen/gen_layout_margin"
+            android:layout_marginEnd="@dimen/gen_layout_margin">
 
             <TextView
                 android:id="@+id/love"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                style="@style/constraintTextStyle"
                 android:drawableStart="@drawable/ic_sentiment_satisfied"
-                android:drawablePadding="4dp"
-                android:textColor="@color/colorSecondaryText"
-                android:textSize="20sp"
                 app:layout_constraintEnd_toStartOf="@id/hate"
                 app:layout_constraintTop_toTopOf="parent"
                 app:mutableText="@{viewModel.getLove}"
@@ -134,13 +105,8 @@
 
             <TextView
                 android:id="@+id/hate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                style="@style/constraintTextStyle"
                 android:drawableStart="@drawable/ic_sentiment_dissatisfied"
-                android:drawablePadding="4dp"
-                android:textColor="@color/colorSecondaryText"
-                android:textSize="20sp"
                 app:layout_constraintEnd_toStartOf="@id/views"
                 app:layout_constraintTop_toTopOf="parent"
                 app:mutableText="@{viewModel.getHate}"
@@ -148,12 +114,9 @@
 
             <TextView
                 android:id="@+id/views"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/constraintTextStyle"
+                android:layout_marginEnd="0dp"
                 android:drawableStart="@drawable/ic_views"
-                android:drawablePadding="4dp"
-                android:textColor="@color/colorSecondaryText"
-                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:mutableText="@{viewModel.getViews}"
@@ -164,8 +127,8 @@
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="2dp"
+            android:layout_height="@dimen/divider_layout_height"
+            android:layout_marginTop="@dimen/divider_layout_margin_top"
             android:background="@color/colorDivider" />
 
     </LinearLayout>
